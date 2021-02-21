@@ -46,38 +46,29 @@ bool is_palindrome(string s) {
 }
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
 
-    ll t, n, m, k, q, x, y;
-    string s;
-    bool flag;
+	ll t, n, m, k, q, x, y;
+	string s;
+	bool flag;
 
 	cin >> t;
 	while (t--) {
-		cin >> n >> m;
+		cin >> x >> y;
+        ll i, j;
+        n = max(x, y);
+        m = n * n;
+        if (n & 1) {
+            i = 1;
+            j = n;            
+        } else {
+            i = n;
+            j = 1;
+        }
 
-		k = max(n, m);
-		q = (k - 1) * k + 1;
-
-		if (n == m)	{
-			print(q);
-			continue;
-		}
-
-		if (n == k) {
-			if (n % 2) {
-				print(q - k + m);
-			} else {
-				print(q + k - m);
-			}
-		} else {
-			if (m % 2) {
-				print(q + k - n);
-			} else {
-				print(q - k + n);
-			}
-		}
+        m -= abs(i - x) + abs(j - y);
+        cout << m << '\n';
 	}
 
     return 0;
