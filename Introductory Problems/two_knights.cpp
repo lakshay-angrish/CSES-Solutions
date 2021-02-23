@@ -45,32 +45,17 @@ bool is_palindrome(string s) {
     return equal(s.rbegin(), s.rend(), s.begin());
 }
  
-ll solve(ll n) {
-	if (n == 1)	return 0;
-	if (n == 2)	return 6;
-	if (n == 3)	return 28;
-	ll ans = n * n * (n * n - 1);
- 
-	ans -= 48;
-	n -= 4;
-	ans -= (40 * n + 8 * n * n);
- 
-	return ans / 2;
-}
- 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
- 
-    ll t, n, m, k, q, x, y;
-    string s;
-    bool flag;
- 
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	ll t, n, m, k, q, x, y;
+	string s;
+	bool flag;
+
 	cin >> n;
- 
-	FOR (i, 1, n + 1) {
-		print(solve(i));
-	}
- 
+
+	FOR (i, 1, n + 1)	cout << (i * i * (i * i - 1)) / 2 - 4 * (i - 1) * (i - 2) << '\n';
+
     return 0;
 }
