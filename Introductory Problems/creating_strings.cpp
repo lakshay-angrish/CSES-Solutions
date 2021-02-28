@@ -57,49 +57,40 @@ bool is_palindrome(string s) {
     return equal(s.rbegin(), s.rend(), s.begin());
 }
  
-vector<string> res;
- 
-void recur(unordered_map<char, int>& cnt, string& s, int size) {
-	if (s.size() == size) {
+void permute(vi& v, int n, vs& res, string s = "") {
+	if (n == s.size())	{
 		res.push_back(s);
 		return;
 	}
-	for (auto i: cnt) {
-		if (i.second > 0) {
-			s.push_back(i.first);
-			cnt[i.first]--;
-			recur(cnt, s, size);
+	for (int i = 0; i < 26; i++) {
+		if (v[i]) {
+			s.push_back('a' + i);
+			v[i]--;
+			permute(v, n, res, s);
+			v[i]++;
 			s.pop_back();
-			cnt[i.first]++;
 		}
 	}
 }
- 
-void permute(string& s) {
-	unordered_map<char, int> cnt;
-	for (int i = 0; i < s.size(); i++) {
-		cnt[s[i]]++;
-	}
- 
-	string str("");
-	recur(cnt, str, s.size());
- 
-	print(res.size());
-	sort(res.begin(), res.end());
- 
-	for (auto i: res)	print(i);
-}
- 
+
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
- 
-    ll t, n, m, k, q, x, y;
-    string s;
-    bool flag;
- 
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	ll t, n, m, k, q, x, y;
+	string s;
+	bool flag;
+
 	cin >> s;
-	permute(s);
- 
+	vi v(26, 0);
+
+	for (auto c: s)	v[c - 'a']++;
+
+	vs res;
+	permute(v, s.size(), res);
+
+	cout << res.size() << '\n';
+	for (auto i: res)	cout << i << '\n';
+
     return 0;
 }
