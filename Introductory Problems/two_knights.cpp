@@ -57,5 +57,13 @@ int main() {
 
 	FOR (i, 1, n + 1)	cout << (i * i * (i * i - 1)) / 2 - 4 * (i - 1) * (i - 2) << '\n';
 
+    /*
+        for a 4x4 board, there are (4 - 1) * (4 - 2) 2x3 regions and
+                                   (4 - 1) * (4 - 2) 3x2 regions
+        for each such region, there are 2 possibilites to place the pair of knights
+        so ans = ((k - 1) * (k - 2) + (k - 1) * (k - 2)) * 2
+               = 4 * (k - 1) * (k - 2)
+    */
+
     return 0;
 }
